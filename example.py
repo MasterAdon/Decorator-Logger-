@@ -1,4 +1,4 @@
-from logger import log_decoration, log_decoration1
+from logger import log_decoration, log_decoration1, parametrized_decor
 
 documents = [
     {"type": "passport", "number": "2207 876234", "name": "Василий Гупкин"},
@@ -101,8 +101,9 @@ def main():
             print('Неправильная команда')
 
 # Функция для более удобного  тестирования декораторов
-@log_decoration
-# @log_decoration1
+parth = ''
+@parametrized_decor(parameter=parth)
+#@log_decoration1
 def tester(name):
     res = name * 7
     return res

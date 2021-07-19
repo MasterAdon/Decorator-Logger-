@@ -33,7 +33,18 @@ def log_decoration1(fun):
 
 
 
+def parametrized_decor(parameter):
+   def decor(foo):
+       def new_foo(*args, **kwargs):
+           print(parameter)
+           result = foo(*args, **kwargs)
+           format = f"%(asctime)s Функция -  {foo.__name__}  Аргумент - %(message)s  Возвращаемое занчение - {result} "
+           logging.basicConfig(filename=parameter, format=format, level=logging.DEBUG)
+           logging.debug(*args, **kwargs)
+           return result
 
+       return new_foo
+   return decor
 
 
 
